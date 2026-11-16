@@ -1,0 +1,1 @@
+var e=!1,t=new Set,n={lire:()=>e,regler(n){n!==e&&(e=n,t.forEach(e=>e()))},abonner(e){return t.add(e),()=>void t.delete(e)}},r={recentrer:null,viser:null,montrer:null};export{n,r as t};
