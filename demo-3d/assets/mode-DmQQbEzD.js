@@ -1,0 +1,1 @@
+var e={vitesse:0,pasMax:.12},t=typeof window<`u`&&new URLSearchParams(window.location.search).has(`enregistrement`);export{e as n,t};

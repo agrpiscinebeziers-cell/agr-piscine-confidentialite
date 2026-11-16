@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/web-C7hXRDDQ.js","assets/dist-62TeNfsI.js"])))=>i.map(i=>d[i]);
+import{i as e}from"./dist-62TeNfsI.js";import{t}from"./preload-helper-BzRy5xz-.js";var n;(function(e){e.FileNotFound=`FILE_NOT_FOUND`,e.OpenFailed=`OPEN_FAILED`,e.FileAlreadyOpen=`FILE_ALREADY_OPEN`})(n||={});var r=e(`FileOpener`,{web:()=>t(()=>import(`./web-C7hXRDDQ.js`).then(e=>new e.FileOpenerWeb),__vite__mapDeps([0,1]))});export{r as FileOpener};

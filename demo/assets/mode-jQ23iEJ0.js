@@ -1,1 +1,0 @@
-var e={vitesse:0,pasMax:.12};export{e as t};

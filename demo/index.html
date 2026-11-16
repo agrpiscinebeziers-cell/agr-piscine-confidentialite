@@ -1,23 +1,37 @@
 <!doctype html>
-<html lang="fr" data-theme="auto">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/agr-piscine-confidentialite/demo/brand/favicon-64.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#092D59" />
-    <link rel="manifest" href="/agr-piscine-confidentialite/demo/manifest.webmanifest" />
-    <link rel="apple-touch-icon" href="/agr-piscine-confidentialite/demo/brand/app-180.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Fusion Piscine" />
-    <meta name="description" content="Fusion Piscine : votre piscine et sa filtration en 3D, notices, réglages, entretien et contact SAV." />
-    <title>Fusion Piscine</title>
-    <script type="module" crossorigin src="/agr-piscine-confidentialite/demo/assets/index-WHlioB7D.js"></script>
-    <link rel="modulepreload" crossorigin href="/agr-piscine-confidentialite/demo/assets/dist-62TeNfsI.js">
-    <link rel="modulepreload" crossorigin href="/agr-piscine-confidentialite/demo/assets/moteur-9gRtGItu.js">
-    <link rel="modulepreload" crossorigin href="/agr-piscine-confidentialite/demo/assets/preload-helper-dNMAbGUr.js">
-    <link rel="modulepreload" crossorigin href="/agr-piscine-confidentialite/demo/assets/natif-BT5I9zPD.js">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fusion Piscine – Démo</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; cursor: none; }
+  video { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+  #lancer { position: fixed; inset: 0; display: none; place-items: center; background: #092D59; color: #fff;
+    font: 600 clamp(20px, 3vw, 44px)/1.3 system-ui, sans-serif; text-align: center; border: 0; width: 100%; cursor: none; }
+</style>
+</head>
+<body>
+<video id="film" src="demo.mp4" autoplay muted loop playsinline preload="auto"></video>
+<button id="lancer">Fusion Piscine<br><small>Appuyez sur OK pour lancer la démo</small></button>
+<script>
+  // Démo de salon : un film qui tourne en boucle, sans rien toucher (télévision).
+  var v = document.getElementById('film'), b = document.getElementById('lancer')
+  function jouer() { var p = v.play(); if (p && p.catch) p.catch(function () { b.style.display = 'grid' }) }
+  function lancer() {
+    b.style.display = 'none'; v.muted = true; jouer()
+    var e = document.documentElement, f = e.requestFullscreen || e.webkitRequestFullscreen
+    if (f) try { f.call(e) } catch (x) {}
+  }
+  b.addEventListener('click', lancer)
+  document.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.keyCode === 13) lancer() })
+  // certains navigateurs de télévision ignorent « loop » : on relance à la fin
+  v.addEventListener('ended', function () { v.currentTime = 0; jouer() })
+  // coupure réseau ou blocage : on recharge la vidéo
+  v.addEventListener('error', function () { setTimeout(function () { v.load(); jouer() }, 3000) })
+  setTimeout(jouer, 500)
+  // garder l'écran allumé si possible
+  if (navigator.wakeLock) navigator.wakeLock.request('screen').catch(function () {})
+</script>
+</body>
 </html>
